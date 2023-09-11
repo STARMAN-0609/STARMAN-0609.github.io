@@ -1,0 +1,622 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Eczar&family=La+Belle+Aurore&family=Neucha&family=Quicksand:wght@300&family=Reenie+Beanie&display=swap");
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+#page-content {
+  display: none;
+}
+
+#preloader-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+  max-width: 200px;
+  background-color: #151515;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+html, body {
+  background-color: #151515;
+  width: 100%;
+  margin: 0;
+}
+
+#scroll {
+  width: 400px;
+}
+
+#karaoke-container {
+  width: 95%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: 4vw;
+  color: #b7a5a5;
+  font-family: "La Belle Aurore", cursive;
+  transition: transform 1s ease;
+  padding: 10px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Estilos para las líneas del karaoke */
+.karaoke-text-container {
+  margin: 0 auto;
+  max-width: 90%;
+  text-align: center;
+}
+
+.karaoke-line {
+  margin: 0;
+  opacity: 5;
+  transition: opacity 0.3s;
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+@media (max-width: 768px) {
+  .karaoke-line {
+    font-size: 2rem;
+    line-height: 1;
+  }
+}
+/* Estilos para la línea actual del karaoke */
+.karaoke-line.current-line {
+  opacity: 1;
+  color: #3c415c;
+}
+
+/* Estilo para resaltar las líneas de karaoke */
+.karaoke-line.resaltada {
+  color: #3c415c; /* Cambia el color de resaltado aquí */
+}
+
+/* Estilos para el acceso modal */
+#access-modal div {
+  width: 90%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  border-radius: 0px;
+  text-align: center;
+  justify-content: center;
+}
+
+#access-modal div h2 {
+  color: #b7a5a5;
+  font-family: "La Belle Aurore", cursive;
+  font-weight: lighter;
+  font-size: 24px; /* Tamaño de fuente para pantallas pequeñas */
+  margin-bottom: 10px; /* Espacio inferior aumentado */
+}
+
+input[type=password] {
+  border: none;
+  color: #303549;
+  border-bottom: 2px solid #303549;
+  background-color: transparent;
+  outline: none;
+  font-size: 1.125em;
+  width: 60%;
+  max-width: 100px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+input[type=password]:focus {
+  border-bottom: 2px solid #b4a6a6;
+}
+
+@media (max-width: 768px) {
+  input[type=password] {
+    font-size: 1em;
+    max-width: 30%;
+    line-height: 0, 5;
+  }
+}
+#access-key {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 0px;
+  width: 40%;
+}
+
+/* Estilos para el mensaje de error */
+.error-message {
+  color: #f72d2d;
+  font-family: "La Belle Aurore", cursive;
+  font-size: 14px;
+  margin-top: 5px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+@media (max-width: 768px) {
+  #access-modal div h2 {
+    font-size: 1.125em;
+    margin-bottom: 0.5em;
+  }
+  input[type=password] {
+    font-size: 1em;
+  }
+}
+.scroll {
+  bottom: -6%;
+  max-width: 200px;
+  min-width: 120px;
+  position: absolute;
+  width: 20%;
+  z-index: 998;
+}
+
+.main {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-height: 100vh;
+  position: relative;
+}
+
+.main .container, .container {
+  position: relative;
+  transform: translateZ(0);
+  z-index: 10;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  width: 100%;
+}
+
+.main h1 {
+  font-family: "Reenie Beanie", cursive;
+  font-size: 30px;
+  margin-bottom: 0;
+  color: white;
+  font-weight: lighter;
+}
+
+h1 {
+  display: block;
+  font-size: 1.7em;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+.main .visual__container, .visual__container {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.visual__container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.lazyloaded {
+  opacity: 1;
+  position: relative;
+  transition: opacity 0.4s linear 0.4s;
+  height: 100%;
+}
+
+video {
+  -o-object-fit: contain;
+     object-fit: contain;
+  overflow-clip-margin: content-box;
+  overflow: clip;
+}
+
+.main .visual__container:after, .visual__container:after {
+  background: #020b0a;
+  content: "";
+  display: block;
+  height: 100%;
+  left: 0;
+  opacity: 0.4;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
+
+.visual {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (min-width: 768px) {
+  .scroll {
+    right: 10%;
+    bottom: -9%;
+  }
+}
+@media screen and (min-width: 550px) {
+  .main h1, .main h2 {
+    font-size: calc(20.52747px + 1.81319vw);
+  }
+}
+section {
+  position: relative;
+  text-align: center;
+}
+
+.section1 {
+  position: relative;
+  overflow: hidden;
+}
+
+.butterflies {
+  position: relative;
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.butterflies-image {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 888;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.pic {
+  width: 50%;
+  max-width: 50vw;
+  margin: 0 auto;
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.pic-image {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.text1 {
+  width: 50%;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  padding: 7%;
+  font-family: "quicksand";
+  color: white;
+  font-weight: lighter;
+  font-size: calc(20px + 0.3vw);
+}
+
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .pic {
+    width: 100%;
+    max-width: 100%;
+  }
+  .text1 {
+    width: 90%;
+    font-size: 1rem;
+  }
+}
+.content-3 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pic1, .pic3 {
+  width: 28%;
+  max-width: 28vw;
+  position: relative;
+  overflow: hidden;
+}
+
+.pic1 img, .pic2 img, .pic3 img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: block;
+  margin: 0 auto;
+}
+
+.pic2 {
+  width: 44%;
+}
+
+@media only screen and (min-width: 768px) {
+  .Floating__container .inner svg.svgText {
+    font-size: 8rem;
+    line-height: 0.8;
+  }
+}
+.Floating__container .inner svg.svgText textPath {
+  fill: white;
+  font-size: 10rem;
+  white-space: nowrap;
+  font-family: "Reenie Beanie";
+  opacity: 0.5;
+}
+
+.Floating__container .inner svg.svgText {
+  overflow: visible;
+}
+
+.Floating__container {
+  position: absolute;
+  transform: translate(0%, 0%);
+  z-index: 999;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+}
+
+.Floating__container .inner {
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.Floating__container .inner svg.svgText {
+  font-size: 2rem;
+  line-height: 1;
+  text-transform: none;
+}
+
+.svgPath {
+  width: 0%;
+}
+
+.section3 {
+  position: relative;
+  overflow: hidden;
+  padding: 5%;
+  margin: 3%;
+  border: 1px solid #ffffff;
+}
+
+.content-4 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.map-pic {
+  width: 50%;
+  max-width: 50vw;
+  margin: 0 auto;
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.map-image {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.lyrics {
+  width: 50%;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  padding: 5%;
+  font-family: "Eczar", serif;
+  color: white;
+  font-weight: lighter;
+  font-size: calc(15px + 0.2vw);
+}
+
+@media (max-width: 768px) {
+  .content-4 {
+    flex-direction: column;
+    text-align: center;
+  }
+  .map-pic {
+    width: 100%;
+    max-width: 100%;
+  }
+  .lyrics {
+    width: 90%;
+    font-size: 1rem;
+  }
+}
+.text-cont5 {
+  text-align: center;
+  display: block;
+}
+
+.content-5 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.intro-estrellas {
+  width: 100%;
+  max-width: 100vw;
+  margin: 0 auto;
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.mapa-estrellas {
+  display: none;
+  height: 100vh;
+  overflow-x: auto;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.mapa-estrellas img {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Estilos para el botón SVG */
+.boton-estrellas {
+  cursor: pointer;
+  width: 20vw;
+  /* height: 100px; */
+  transition: transform 0.2s ease-in-out;
+  padding: 2%;
+  margin: 0 auto;
+}
+
+/* Animación de vibración */
+@keyframes vibracion {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-0.2vw);
+  }
+  50% {
+    transform: translateX(0.2wv);
+  }
+  75% {
+    transform: translateX(-0.2wv);
+  }
+  100% {
+    transform: translateX(0.2wv);
+  }
+}
+.boton-estrellas:hover {
+  animation: vibracion 0.2s infinite;
+}
+
+.text-cont5 {
+  width: 60%;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  font-family: "La Belle Aurore", cursive;
+  color: white;
+  font-weight: lighter;
+  font-size: calc(10px + 1.5vw);
+  margin: 0 auto;
+  padding: 5% 5% 0% 5%;
+}
+
+.section5 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content6 {
+  position: relative;
+  width: 100%;
+}
+
+.pic-mult {
+  width: 100%;
+  height: auto;
+}
+
+.text-pics {
+  width: 50%;
+  padding: 20px;
+  position: absolute;
+  right: 5%;
+  top: 45%;
+  text-align: center;
+  align-content: center;
+  font-family: "La Belle Aurore", cursive;
+  color: white;
+  font-weight: lighter;
+  font-size: calc(6px + 1vw);
+  font-family: "Eczar", serif;
+}
+
+.section6 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 6%;
+}
+
+.video {
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  width: 100vw;
+}
+
+#fluid_video_wrapper_video {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.Noise {
+  animation: NoiseGenerate 2s steps(2) infinite;
+  background-image: url(/img/noise.png);
+  background-position: 50%;
+  bottom: -20vw;
+  height: auto;
+  left: -20vw;
+  opacity: 0.4;
+  pointer-events: none;
+  position: fixed;
+  right: -20vw;
+  top: -20vw;
+  width: auto;
+  z-index: 999999;
+}/*# sourceMappingURL=estilos.css.map */
